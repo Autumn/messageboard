@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="jquery-1.8.1.js"></script>
+<style>
+
+.thread {
+    padding: 10px;
+	
+}
+
+.opost, .post {
+border-left: 5px black solid;
+margin: 10px;
+padding:10px;
+}
+
+.userbar {
+	top: 0px;
+	height:50px;
+	padding-top: 10px;
+	-moz-box-shadow: 10px 10px 5px #888;
+	-webkit-box-shadow: 10px 10px 5px #888;
+	box-shadow: 0px -3px 5px #888;
+}
+
+</style>
+
+<script>
+
+postId = 1;
+
+
+	function hidePost(postId) {
+		id = "#" + postId;
+		$(id).fadeOut();
+	}
+	
+	function quotePost(postId) {
+
+	}
+	
+	function replyPost(postId) {
+	
+	}
+
+	function newThread(postText) {
+		var postDate = new Date();
+		postContent = '\
+		<div class="row-fluid"> \
+			<div class="span8 offset2 thread"> \
+				<div class="row-fluid"> \
+					<div id="' + postId + '" class="span12 opost"> \
+						<div class="row-fluid"> \
+							<div class="span8 metadata"> \
+								<span class="label">' + postId + '</span> <span class="label label-info">' + postDate.getTime() + '</span> \
+							</div> \
+						</div> \
+						<div class="row-fluid"> \
+							<div class="span12 content">' + postText + ' \
+						</div> \
+						</div> \
+						<div class="row-fluid"> \
+							<div class="btn-group span12 options"> \
+								<button class="btn btn-mini" onclick="replyPost(' + postId + ')">Reply</button> \
+								<button class="btn btn-mini" onclick="quotePost(' + postId + ')">Quote</button> \
+								<button class="btn btn-mini" onclick="hidePost(' + postId + ')">Hide</button> \
+							</div> \
+						</div> \
+					</div> \
+				</div> \
+			</div> \
+		</div>';
+		postId++;
+		return postContent;
+	}
+	$(document).ready(function() {
+/*		
+		$("#textbox").focusin(function() {
+			$(this).animate({
+				rows: 10
+			}, 'fast');
+		});
+		$("#textbox").focusout(function() {
+			$(this).animate({
+				rows: 1
+			}, 'fast');
+		});
+*/
+		$("#post").click(function() {
+			postText = $("#textbox").val();
+			if (postText == "") {
+			
+			} else {
+				$("#textbox").val("");
+				$("#main").append(newThread(postText));
+			}
+		});
+	});
+</script>
+
+</head>
+
+<body>
+
+<div class="fluid-container">
+
+	<div class="row-fluid userbar">
+		<div class="offset3 span4">
+			<textarea id="textbox" class="field span12" rows="1" placeholder="Post a new thread..."></textarea>
+		</div>
+		<div class="btn-group span1">
+			<button id="post" class="btn">Submit</button>
+		</div>
+	</div>
+	
+	<div class="row-fluid" id="main">
+	
+<!--			<!-- thread --
+		<div class="row-fluid">
+			<div class="span8 offset2 thread">
+				<!-- original post --
+				
+				<div class="row-fluid">
+					<div class="span12 opost">			
+						<!-- metadata --
+						<div class="row-fluid">
+							<div class="span6 metadata">
+								<span class="label">1</span> <span class="label label-info">123123123123</span>
+							</div>
+						</div>
+
+						
+						<!-- post content --
+						<div class="row-fluid">
+							<div class="span12 content">
+							text
+							</div>
+						</div>
+						
+						<!-- options --
+						<div class="row-fluid">
+							<div class="btn-group span12 options">
+								<button class="btn btn-mini">Reply</button>
+								<button class="btn btn-mini">Quote</button>
+								<button class="btn btn-mini">Hide</button>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- replies --
+				<div class="row-fluid">
+					<div class="offset1 span11 post">
+					
+						<!-- metadata --
+						<div class="row-fluid">
+							<div class="span6 metadata">
+								<span class="label">2</span> <span class="label label-info">123123123124</span>
+							</div>
+						</div>
+						
+						<!-- post content --
+						<div class="row-fluid">
+							<div class="span12 content">
+							text
+							</div>
+						</div>
+						
+						<!-- options --
+						<div class="row-fluid">
+							<div class="btn-group span12 options">
+								<button class="btn btn-mini">Quote</button>
+								<button class="btn btn-mini">Hide</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
+	</div>
+	
+	
+	<!-- user navigation and commands -->
+
+	
+	<!-- reply box
+	
+	<div class="row-fluid">
+		<div class="row-fluid">
+			<div class="offset4 span4">
+				<textarea class="field span12" rows="10" placeholder="Enter reply here..."></textarea>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="offset4 span4 btn-group">
+				<button class="btn">Submit</button>
+			</div>
+		</div>
+	</div>
+	
+	-->
+</div>
+
+
+</body>
+
+</html>
